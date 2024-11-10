@@ -116,9 +116,9 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o \
 
 OBJECTS_SHARED_CODE := \
-  $(JUCE_OBJDIR)/CustomAudioVisualiserComponent_6c15000a.o \
   $(JUCE_OBJDIR)/PluginProcessor_a059e380.o \
   $(JUCE_OBJDIR)/PluginEditor_94d4fb09.o \
+  $(JUCE_OBJDIR)/AudioOscilloscope_bcf35de6.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_63111d02.o \
   $(JUCE_OBJDIR)/include_juce_audio_formats_15f82001.o \
@@ -201,11 +201,6 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o: ../../Juc
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/CustomAudioVisualiserComponent_6c15000a.o: ../../Source/CustomAudioVisualiserComponent.cpp
-	-$(V_AT)mkdir -p $(@D)
-	@echo "Compiling CustomAudioVisualiserComponent.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/PluginProcessor_a059e380.o: ../../Source/PluginProcessor.cpp
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling PluginProcessor.cpp"
@@ -214,6 +209,11 @@ $(JUCE_OBJDIR)/PluginProcessor_a059e380.o: ../../Source/PluginProcessor.cpp
 $(JUCE_OBJDIR)/PluginEditor_94d4fb09.o: ../../Source/PluginEditor.cpp
 	-$(V_AT)mkdir -p $(@D)
 	@echo "Compiling PluginEditor.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AudioOscilloscope_bcf35de6.o: ../../Source/AudioOscilloscope.cpp
+	-$(V_AT)mkdir -p $(@D)
+	@echo "Compiling AudioOscilloscope.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/include_juce_audio_basics_8a4e984a.o: ../../JuceLibraryCode/include_juce_audio_basics.cpp

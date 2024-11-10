@@ -11,23 +11,39 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
+using Rectangle = juce::Rectangle<float>;
+
 //==============================================================================
 /**
 */
-class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
+class AudioScopeAudioProcessorEditor : public juce::AudioProcessorEditor,
+    public juce::Timer
 {
 public:
-    AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor&);
-    ~AudioPluginAudioProcessorEditor() override;
+    AudioScopeAudioProcessorEditor(AudioScopeAudioProcessor&);
+    ~AudioScopeAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    void timerCallback() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    AudioPluginAudioProcessor& audioProcessor;
+    AudioScopeAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
+    int const REFRESH_RATE{ 30 };
+
+    // juce::OwnedArray<juce::TextButton> rbChannel;
+    // juce::OwnedArray<Rectangle> rectChannel;
+
+    juce::Slider verticalScale;
+    juce::Slider verticalPosition;
+    Rectangle rectVerticalScale;
+    Rectangle rectVerticalPosition;
+    Rectangle rectScope;
+
+    int vBufferIndex{ 0 };
+    int vBufferIncrement{ 10 };
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioScopeAudioProcessorEditor)
 };

@@ -9,28 +9,26 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "CustomAudioVisualiserComponent.h"  // Include the custom component header
-
 
 //==============================================================================
 /**
 */
-class AudioPluginAudioProcessor  : public juce::AudioProcessor
+class AudioScopeAudioProcessor  : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    AudioPluginAudioProcessor();
-    ~AudioPluginAudioProcessor() override;
+    AudioScopeAudioProcessor();
+    ~AudioScopeAudioProcessor() override;
 
     //==============================================================================
-    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-   #ifndef JucePlugin_PreferredChannelConfigurations
-    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
-   #endif
+#ifndef JucePlugin_PreferredChannelConfigurations
+    bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
+#endif
 
-    void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
+    void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
@@ -38,7 +36,6 @@ public:
 
     //==============================================================================
     const juce::String getName() const override;
-
     bool acceptsMidi() const override;
     bool producesMidi() const override;
     bool isMidiEffect() const override;
@@ -47,16 +44,19 @@ public:
     //==============================================================================
     int getNumPrograms() override;
     int getCurrentProgram() override;
-    void setCurrentProgram (int index) override;
-    const juce::String getProgramName (int index) override;
-    void changeProgramName (int index, const juce::String& newName) override;
+    void setCurrentProgram(int index) override;
+    const juce::String getProgramName(int index) override;
+    void changeProgramName(int index, const juce::String& newName) override;
 
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    CustomAudioVisualiserComponent waveViewer;
+    juce::AudioSampleBuffer vBuffer;
+    int vBufferBlock{ 0 };
+    const int vBufferBlocks{ 32 };
+
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioScopeAudioProcessor)
 };
