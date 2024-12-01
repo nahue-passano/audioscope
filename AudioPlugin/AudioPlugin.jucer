@@ -10,10 +10,6 @@
             file="Source/PluginProcessor.h"/>
       <FILE id="sTC5f8" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="uc57Dj" name="AudioOscilloscope.cpp" compile="1" resource="0"
-            file="Source/AudioOscilloscope.cpp"/>
-      <FILE id="vJKEfR" name="AudioOscilloscope.h" compile="0" resource="0"
-            file="Source/AudioOscilloscope.h"/>
       <FILE id="Vmc82R" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>

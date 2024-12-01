@@ -1,11 +1,3 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
@@ -32,9 +24,6 @@ private:
     AudioScopeAudioProcessor& audioProcessor;
 
     int const REFRESH_RATE{ 30 };
-
-    // juce::OwnedArray<juce::TextButton> rbChannel;
-    // juce::OwnedArray<Rectangle> rectChannel;
 
     juce::Slider verticalScale;
     juce::Slider verticalPosition;

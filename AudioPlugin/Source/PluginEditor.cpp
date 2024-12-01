@@ -1,11 +1,3 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -19,26 +11,6 @@ AudioScopeAudioProcessorEditor::AudioScopeAudioProcessorEditor(AudioScopeAudioPr
 
     // scope rectangle
     rectScope = Rectangle(0+3, 3, 1280-6, 500-3);
-
-    // int x = rectScope.getWidth() + 4;
-    // int width = getWidth() - rectScope.getRight() - 2;
-
-    // setup L/R channel toggle buttons
-    // auto* b = rbChannel.add(new juce::TextButton("L"));
-    // addAndMakeVisible(b);
-    // b->setRadioGroupId(1);
-    // b->setClickingTogglesState(true);
-    // b->setConnectedEdges(juce::Button::ConnectedOnRight);
-    // rectChannel.add(new Rectangle(x, 20, width / 2, 20));
-
-    // b = rbChannel.add(new juce::TextButton("R"));
-    // addAndMakeVisible(b);
-    // b->setRadioGroupId(1);
-    // b->setClickingTogglesState(true);
-    // b->setConnectedEdges(juce::Button::ConnectedOnLeft);
-    // rectChannel.add(new Rectangle(rectChannel[0]->translated(rectChannel[0]->getWidth() - 1, 0)));
-
-    // rbChannel[1]->setToggleState(true, juce::NotificationType::dontSendNotification);
 
     // Vertical Scale
     rectVerticalScale = Rectangle(100, 620, 100, 100);
@@ -77,7 +49,7 @@ void AudioScopeAudioProcessorEditor::paint(juce::Graphics& g)
     g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 
     g.setColour(juce::Colour (88,121,188));
-    // g.drawLine(rectScope.getX(), rectScope.getCentreY(), rectScope.getRight(), rectScope.getCentreY(), 3);
+    
     
     // Dashed horizontal line for VerticalPosition
     juce::Line<float> dashedLine(rectScope.getX(), v_mid - verticalPosition.getValue(), rectScope.getRight(), v_mid - verticalPosition.getValue()); // From (10, 50) to (200, 50)
@@ -85,8 +57,6 @@ void AudioScopeAudioProcessorEditor::paint(juce::Graphics& g)
     g.drawDashedLine(dashedLine, dashLengths, 2, 1.0f);
 
     g.setColour(juce::Colours::white);
-    // std::cout << "v_mid: " << v_mid << std::endl;
-    // std::cout << "rectScope.getHeight(): " << rectScope.getHeight() << std::endl;
 
     for (int x = rectScope.getX(); x < rectScope.getRight(); x++)
     {
